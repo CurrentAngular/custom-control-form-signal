@@ -1,0 +1,6 @@
+@if(!required()) {
+<span class="required-marker">*</span>
+}
+@for (reaction of reactions(); track $index) {
+<div class="reaction" (click)="updateValue(reaction)" [class.selected]="isSelected(reaction)">{{ reaction }}</div>
+}
