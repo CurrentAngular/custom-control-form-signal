@@ -1,1 +1,148 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background: #0f0f11;
+  font-family: 'Poppins';
+}
+
+.logo {
+  width: 150px;
+  margin: 0 auto;
+  display: block;
+}
+h3 {
+  color: #faf3e0;
+  font-weight: 600;
+  margin: 20px 0 20px 0;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 400px;
+  color: #faf3e0;
+  border: #696868 1px solid;
+  padding: 20px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  label {
+    font-size: 12px;
+  }
+  input[type='text'],
+  textarea,
+  input[type='email'],
+  input[type='password'] {
+    background: #2c2c33;
+    border: 1px solid #faf3e0;
+    border-radius: 5px;
+    padding: 8px;
+    color: #faf3e0;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    &:focus {
+      outline: none;
+    }
+    &:invalid {
+      color: red;
+      border: 1px solid red;
+      opacity: 0.6;
+    }
+  }
+  .error {
+    color: red;
+    font-size: 10px;
+    margin-top: -15px;
+  }
+  button {
+    background: #ffc107;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    &:hover {
+      background: #ba8c03;
+    }
+    &:active {
+      background: #ba8c03;
+    }
+  }
+}
+app-root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  // padding: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+}
+#content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 16px;
+  box-sizing: border-box;
+  background: #151519;
+  width: 100%;
+}
+reaction-picker {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.disabled-state {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  border: 1px solid #e5dfcc;
+  border-radius: 10px;
+  .reaction {
+    display: block;
+    padding: 10px 13px;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(#e5dfcc, 0.1);
+    }
+  }
+  .required-marker {
+    position: absolute;
+    top: -10px;
+    right: -5px;
+  }
+}
+.form-value {
+  margin-bottom: -8px;
+  margin-top: 10px;
+  text-align: left;
+  font-size: 10px;
+  color: #e5dfcc;
+  width: 100%;
+  opacity: 0.7;
+}
+label {
+  margin-bottom: -12px;
+}
+.selected {
+  background-color: rgba(#e5dfcc, 0.1);
+}
+span {
+  font-size: 12px;
+}
+pre {
+  background: #2c2c33;
+  border: 1px solid #a8a291;
+  border-radius: 5px;
+  padding: 8px;
+  color: #a8a291;
+  font-size: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+}

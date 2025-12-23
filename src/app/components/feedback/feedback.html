@@ -1,0 +1,6 @@
+<h3>Feedback Signal Form</h3>
+<form (submit)="onSubmit($event)">
+	<label for="feedback-label">Enter your feedback:</label>
+	<textarea id="feedback-label" placeholder="Leave feedback here..." [field]="form.text"></textarea>
+	<button type="submit" [disabled]="form().invalid()">save</button>
+</form>
