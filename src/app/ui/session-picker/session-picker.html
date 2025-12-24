@@ -1,0 +1,14 @@
+@if(show()) {
+<div class="required">
+	<span class="required-marker">*</span>
+</div>
+}
+<div class="cards">
+	@for(session of sessions(); track session.type) {
+	<!-- Если disabled true, выполнение останавливается, и клик игнорируется -->
+	<div class="card" [class.active]="session.type === value()" (click)="disabled() || value.set(session.type)">
+		<img class="card-logo" [ngSrc]="session.icon" [alt]="session.title" width="40" height="40" priority />
+		<span class="card-title">{{ session.title }}</span>
+	</div>
+	}
+</div>

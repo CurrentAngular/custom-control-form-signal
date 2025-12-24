@@ -1,0 +1,72 @@
+:host(.disabled) {
+  cursor: not-allowed;
+  opacity: 0.5;
+  // Важно! Сам хост должен принимать события, чтобы работал cursor: not-allowed
+  pointer-events: auto;
+
+  .cards {
+    // Отключаем все клики внутри контейнера карточек
+    pointer-events: none;
+  }
+
+  .card {
+    border-color: rgba(255, 255, 255, 0.3);
+
+    &.active {
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    &-logo {
+      filter: grayscale(100%);
+    }
+
+    &-title {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+.cards {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid white;
+  padding: 12px 16px;
+  cursor: pointer;
+
+  &.active {
+    border-color: tomato;
+  }
+
+  &-logo {
+    background-color: white;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    user-select: none;
+  }
+
+  &-title {
+    font-size: 14px;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    color: white;
+    user-select: none;
+  }
+}
+
+.required {
+  display: flex;
+  justify-content: flex-end;
+
+  &-marker {
+    color: fuchsia;
+    font-size: 24px;
+  }
+}

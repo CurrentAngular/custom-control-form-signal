@@ -6,12 +6,19 @@ export const routes: Routes = [
     loadComponent: () => import('./components/feedback/feedback').then((m) => m.Feedback),
   },
   {
+    path: 'conference',
+    loadComponent: () =>
+      import('./components/conference-talk-proposal/conference-talk-proposal').then(
+        (m) => m.ConferenceTalkProposal
+      ),
+  },
+  {
     path: '',
-    redirectTo: '/feedback',
+    redirectTo: '/conference',
     pathMatch: 'full',
   },
   {
     path: '**',
-    redirectTo: '/feedback',
+    redirectTo: '/conference',
   },
 ];
