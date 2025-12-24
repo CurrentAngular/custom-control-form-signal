@@ -5,10 +5,11 @@ import { ReactionPicker } from '../../ui/reaction-picker/reaction-picker';
 import { JsonPipe } from '@angular/common';
 import { Emoji } from '../../enums/emoji.enum';
 import { BasicInput } from '../../ui/basic-input/basic-input';
+import { BasicToggle } from '../../ui/basic-toggle/basic-toggle';
 
 @Component({
   selector: 'cfc-feedback',
-  imports: [Field, ReactionPicker, JsonPipe, BasicInput],
+  imports: [Field, ReactionPicker, JsonPipe, BasicInput, BasicToggle],
   templateUrl: './feedback.html',
   styleUrl: './feedback.scss',
 })
@@ -17,6 +18,7 @@ export class Feedback {
     text: '',
     reaction: Emoji.First,
     message: '',
+    checked: false,
   });
 
   readonly form = form(this.#formModel, (schemaPath) => {
