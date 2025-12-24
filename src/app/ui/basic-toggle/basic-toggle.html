@@ -1,1 +1,4 @@
-<button type="button" (click)="toggle()" [class.active]="checked()"></button>
+<div class="check" (click)="toggle()">
+	<button type="button" [class.active]="checked()"></button>
+	<span class="check-label" [class.active]="checked()">Agree with all!</span>
+</div>
