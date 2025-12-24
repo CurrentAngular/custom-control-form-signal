@@ -8,4 +8,7 @@
 		<cfc-session-picker [field]="form.sessionType" />
 		<button type="submit">Submit Talk Proposal</button>
 	</form>
+	<div class="output">
+		<pre>{{ form().value() | json }}</pre>
+	</div>
 </div>
