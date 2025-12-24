@@ -1,0 +1,11 @@
+<div class="container">
+	<h2 class="title">Conference Talk Proposal Form</h2>
+	<form (submit)="onSubmit($event)">
+		<input [field]="form.title" placeholder="Enter Talk Title" type="text" />
+		<input [field]="form.speaker" placeholder="Enter Spekaer Name" type="text" />
+		<input [field]="form.preferredDate" placeholder="Enter Preferred Date" type="date" />
+		<!-- custom form control -->
+		<cfc-session-picker [field]="form.sessionType" />
+		<button type="submit">Submit Talk Proposal</button>
+	</form>
+</div>
