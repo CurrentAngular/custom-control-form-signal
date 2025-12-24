@@ -4,9 +4,11 @@
 		<label for="feedback-label">Enter your feedback:</label>
 		<textarea id="feedback-label" placeholder="Leave feedback here..." [field]="form.text"></textarea>
 		<cfc-reaction-picker [field]="form.reaction" />
+		<hr class="divider" />
+		<cfc-basic-input [field]="form.message" />
 		<button type="submit" [disabled]="form().invalid()">save</button>
 	</form>
 
 	<div class="form-value">Form Value:</div>
 	<pre>{{ form().value() | json }}</pre>
-</div>s
+</div>

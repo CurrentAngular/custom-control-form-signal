@@ -4,10 +4,11 @@ import { disabled, Field, form, required } from '@angular/forms/signals';
 import { ReactionPicker } from '../../ui/reaction-picker/reaction-picker';
 import { JsonPipe } from '@angular/common';
 import { Emoji } from '../../enums/emoji.enum';
+import { BasicInput } from '../../ui/basic-input/basic-input';
 
 @Component({
   selector: 'cfc-feedback',
-  imports: [Field, ReactionPicker, JsonPipe],
+  imports: [Field, ReactionPicker, JsonPipe, BasicInput],
   templateUrl: './feedback.html',
   styleUrl: './feedback.scss',
 })
@@ -15,6 +16,7 @@ export class Feedback {
   readonly #formModel = signal<FeedbackInterface>({
     text: '',
     reaction: Emoji.First,
+    message: '',
   });
 
   readonly form = form(this.#formModel, (schemaPath) => {
