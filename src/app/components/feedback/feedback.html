@@ -5,6 +5,7 @@
 		<textarea id="feedback-label" placeholder="Leave feedback here..." [field]="form.text"></textarea>
 		<cfc-reaction-picker [field]="form.reaction" />
 		<hr class="divider" />
+		<cfc-basic-toggle [field]="form.checked" />
 		<cfc-basic-input [field]="form.message" />
 		<button type="submit" [disabled]="form().invalid()">save</button>
 	</form>
