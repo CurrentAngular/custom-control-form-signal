@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import {
   form,
   Field,
@@ -28,6 +28,7 @@ const addressSchema = schema<Address>((path) => {
   imports: [Field],
   templateUrl: './customer.html',
   styleUrl: './customer.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Customer {
   readonly form = form(signal(formModel), (path) => {
@@ -59,4 +60,8 @@ export class Customer {
     // у контрола shippingAddress есть одно уникальное поле, поэтому его провалидировали отдельно
     minLength(path.shippingAddress.note, ({ value }) => (value() ? 10 : 0));
   });
+
+  onSumbit(): void {
+    //
+  }
 }
