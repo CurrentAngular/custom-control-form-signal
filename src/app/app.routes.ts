@@ -13,12 +13,16 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'customer',
+    loadComponent: () => import('./components/customer/customer').then((m) => m.Customer),
+  },
+  {
     path: '',
-    redirectTo: '/conference',
+    redirectTo: '/customer',
     pathMatch: 'full',
   },
   {
     path: '**',
-    redirectTo: '/conference',
+    redirectTo: '/customer',
   },
 ];
