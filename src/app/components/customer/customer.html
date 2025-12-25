@@ -1,1 +1,25 @@
-<p>customer works!</p>
+<form novalidate>
+	<fieldset>
+		<legend>customer infomation</legend>
+		<div>
+			<label for="firstName">first name</label>
+			<input type="text" id="firstName" [field]="form.firstName" />
+			@if(form.firstName().touched() || form.firstName().invalid()) {
+			@for(error of form.firstName().errors(); track error.kind) {
+			<span>{{ error.message }}</span>
+			}
+			}
+		</div>
+
+		<legend>customer infomation</legend>
+		<div>
+			<label for="lastName">last name</label>
+			<input type="text" id="lastName" />
+			@if(form.lastName().invalid() || form.lastName().touched()) {
+			@for(error of form.lastName().errors(); track error.kind) {
+			<span>{{ error.message }}</span>
+			}
+			}
+		</div>
+	</fieldset>
+</form>
