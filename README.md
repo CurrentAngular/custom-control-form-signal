@@ -9,3 +9,4 @@
 ### Useful links
 
 - [Angular Event Plugins](https://www.npmjs.com/package/@taiga-ui/event-plugins)
+- [Zod](https://zodjs.netlify.app/guide/basic-usage)
