@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+// zod-схема для валидации модели формы
 export const formModel = z.strictObject({
   firstName: z.string(),
   lastName: z.string(),
@@ -18,4 +19,26 @@ export const formModel = z.strictObject({
   }),
 });
 
+// тип модели формы
 export type FormModel = z.infer<typeof formModel>;
+
+// модель формы
+export const initFormModel = (): FormModel => {
+  return {
+    firstName: '',
+    lastName: '',
+    hasBillingAddress: false,
+    billingAddress: {
+      city: '',
+      street: '',
+      zipCode: '',
+    },
+    hasShippingAddress: false,
+    shippingAddress: {
+      city: '',
+      street: '',
+      zipCode: '',
+      note: '',
+    },
+  };
+};

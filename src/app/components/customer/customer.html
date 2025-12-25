@@ -38,6 +38,7 @@
 	@if(!form.hasBillingAddress().hidden()) {
 	<fieldset class="form-fieldset address-fieldset mb-6">
 		<legend>Billing Address</legend>
+		<cfc-customer-address [address]="form.billingAddress" />
 	</fieldset>
 	}
 
@@ -50,6 +51,12 @@
 	@if(!form.hasShippingAddress().hidden()) {
 	<fieldset class="form-fieldset address-fieldset mb-6">
 		<legend>Shipping Address</legend>
+		<cfc-customer-address [address]="form.shippingAddress">
+			<div class="form-group">
+				<label [for]="form.shippingAddress.note().name()">Note</label>
+				<textarea [id]="form.shippingAddress.note().name()" [field]="form.shippingAddress.note"></textarea>
+			</div>
+		</cfc-customer-address>
 	</fieldset>
 	}
 

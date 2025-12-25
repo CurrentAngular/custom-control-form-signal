@@ -9,7 +9,8 @@ import {
   minLength,
   applyWhen,
 } from '@angular/forms/signals';
-import { formModel, Address } from './models';
+import { Address, FormModel, initFormModel } from './models';
+import { CustomerAddress } from '../../ui/customer-address/customer-address';
 
 const addressSchema = schema<Address>((path) => {
   required(path.city);
@@ -25,13 +26,13 @@ const addressSchema = schema<Address>((path) => {
 
 @Component({
   selector: 'cfc-customer',
-  imports: [Field],
+  imports: [Field, CustomerAddress],
   templateUrl: './customer.html',
   styleUrl: './customer.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Customer {
-  readonly form = form(signal(formModel), (path) => {
+  readonly form = form(signal<FormModel>(initFormModel()), (path) => {
     // first name field
     required(path.firstName, { message: 'First name is required' });
     maxLength(path.firstName, 255);
