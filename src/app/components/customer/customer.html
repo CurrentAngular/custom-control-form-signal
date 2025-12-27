@@ -35,7 +35,7 @@
 		<label [for]="form.hasBillingAddress().name()" class="checkbox-label">Add Billing Address</label>
 	</div>
 
-	@if(!form.hasBillingAddress().hidden()) {
+	@if(!form.billingAddress().hidden()) {
 	<fieldset class="form-fieldset address-fieldset mb-6">
 		<legend>Billing Address</legend>
 		<cfc-customer-address [address]="form.billingAddress" />
@@ -48,7 +48,7 @@
 		<label [for]="form.hasShippingAddress().name()" class="checkbox-label">Add Shipping Address</label>
 	</div>
 
-	@if(!form.hasShippingAddress().hidden()) {
+	@if(!form.shippingAddress().hidden()) {
 	<fieldset class="form-fieldset address-fieldset mb-6">
 		<legend>Shipping Address</legend>
 		<cfc-customer-address [address]="form.shippingAddress">
