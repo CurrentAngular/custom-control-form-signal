@@ -5,24 +5,12 @@ import {
   required,
   maxLength,
   hidden,
-  schema,
   minLength,
   applyWhen,
 } from '@angular/forms/signals';
-import { Address, FormModel, initFormModel } from './models';
+import { FormModel, initFormModel } from './models';
 import { CustomerAddress } from '../../ui/customer-address/customer-address';
-
-const addressSchema = schema<Address>((path) => {
-  required(path.city);
-  minLength(path.city, 3);
-
-  required(path.street);
-  minLength(path.street, 3);
-
-  required(path.zipCode);
-  minLength(path.zipCode, 3, { message: 'Zip code must be between 3 and 5 characters long.' });
-  maxLength(path.zipCode, 3, { message: 'Zip code must be between 3 and 5 characters long.' });
-});
+import { addressSchema } from './address.schema';
 
 @Component({
   selector: 'cfc-customer',
