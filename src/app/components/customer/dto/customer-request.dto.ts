@@ -24,4 +24,4 @@ export const customerRequestDtoSchema = z.object({
 });
 
 // Тип можно вывести из схемы, чтобы он точно соответствовал
-export type CustomerDto = z.infer<typeof customerDtoSchema>;
+export type CustomerDto = z.infer<typeof customerRequestDtoSchema>;

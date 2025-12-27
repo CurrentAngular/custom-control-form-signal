@@ -36,5 +36,7 @@ export class CustomerService {
 
     // Для заглушки возвращаем данные
     return of(validData);
+
+    // TODO: добавить валидацию при помощи zod - ответа с бекенда
   }
 }
