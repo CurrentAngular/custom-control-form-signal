@@ -19,7 +19,7 @@
 				<!-- form.lastName().name() - динамически задаем для атрибута for значение - в данном случае это имя поля lastName -->
 				<label [for]="form.lastName().name()">last name</label>
 				<!-- form.lastName().name() - динамически задаем для атрибута id значение - в данном случае это имя поля lastName -->
-				<input type="text" [id]="form.lastName().name()" />
+				<input type="text" [id]="form.lastName().name()" [field]="form.lastName" />
 				@if(form.lastName().invalid() || form.lastName().touched()) {
 				@for(error of form.lastName().errors(); track error.kind) {
 				<span>{{ error.message }}</span>
