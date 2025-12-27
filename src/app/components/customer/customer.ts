@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import {
   form,
   Field,
@@ -7,10 +7,17 @@ import {
   hidden,
   minLength,
   applyWhen,
+  submit,
+  FieldTree,
+  customError,
 } from '@angular/forms/signals';
 import { FormModel, initFormModel } from './models';
 import { CustomerAddress } from '../../ui/customer-address/customer-address';
 import { addressSchema } from './address.schema';
+import { CustomerDto } from './dto/customer.dto';
+import { CustomerService } from '../../services/customer.service';
+import { catchError, firstValueFrom, map, of } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'cfc-customer',
@@ -20,6 +27,8 @@ import { addressSchema } from './address.schema';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Customer {
+  readonly #service = inject(CustomerService);
+
   readonly form = form(signal<FormModel>(initFormModel()), (path) => {
     // first name field
     required(path.firstName, { message: 'First name is required' });
@@ -50,7 +59,68 @@ export class Customer {
     minLength(path.shippingAddress.note, ({ value }) => (value() ? 10 : 0));
   });
 
-  onSumbit(): void {
-    //
+  async onSumbit(): Promise<void> {
+    await submit(this.form, async (form) => {
+      if (this.form().invalid()) {
+        return;
+      }
+
+      const newCustomer = this.#generateCustomer(form);
+
+      return await firstValueFrom(
+        this.#service.createCustomer(newCustomer).pipe(
+          map(() => {
+            form().reset(); // сбрасываем все состояния контролов формы на дефолтные значения
+            form().value.set(initFormModel()); // сбрасываем все значения контролов формы на дефолтные значения
+
+            return null;
+          }),
+          catchError((error: Error) => {
+            const serverError = customError({
+              kind: 'server error',
+              message:
+                error instanceof HttpErrorResponse
+                  ? error.error.title
+                  : 'An unexpected error occurred, please try again',
+            });
+
+            return of(serverError);
+          })
+        )
+      );
+    });
+  }
+
+  #generateCustomer(form: FieldTree<FormModel>): CustomerDto {
+    const {
+      firstName,
+      lastName,
+      hasBillingAddress,
+      billingAddress,
+      hasShippingAddress,
+      shippingAddress,
+    } = form().value();
+
+    return {
+      firstName,
+      lastName,
+      hasBillingAddress,
+      billingAddress: hasBillingAddress
+        ? {
+            city: billingAddress.city,
+            street: billingAddress.street,
+            zipCode: billingAddress.zipCode,
+          }
+        : null,
+      hasShippingAddress,
+      shippingAddress: hasShippingAddress
+        ? {
+            city: shippingAddress.city,
+            street: shippingAddress.street,
+            zipCode: shippingAddress.zipCode,
+            note: shippingAddress.note,
+          }
+        : null,
+    };
   }
 }
