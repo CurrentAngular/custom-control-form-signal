@@ -3,26 +3,26 @@
 		<legend>customer infomation</legend>
 		<div class="form-row">
 			<div class="form-group">
-				<!-- form.firstName().name() - динамически задаем для атрибута for значение - в данном случае это имя поля firstName -->
-				<label [for]="form.firstName().name()">first name</label>
-				<!-- form.firstName().name() - динамически задаем для атрибута id значение - в данном случае это имя поля firstName -->
-				<input type="text" [id]="form.firstName().name()" [field]="form.firstName" />
+				@let firstName = form.firstName();
+				<!-- firstName.name() - динамически задаем для атрибута for значение - в данном случае это имя поля firstName -->
+				<label [for]="firstName.name()">first name</label>
+				<input type="text" [id]="firstName.name()" [field]="form.firstName" />
 
-				@if(form.firstName().touched() || form.firstName().invalid()) {
-				@for(error of form.firstName().errors(); track error.kind) {
-				<span>{{ error.message }}</span>
+				@if(firstName.touched() || firstName.invalid()) {
+				@for(err of firstName.errors(); track err.kind) {
+				<span>{{ err.message }}</span>
 				}
 				}
 			</div>
 
 			<div class="form-group">
-				<!-- form.lastName().name() - динамически задаем для атрибута for значение - в данном случае это имя поля lastName -->
-				<label [for]="form.lastName().name()">last name</label>
-				<!-- form.lastName().name() - динамически задаем для атрибута id значение - в данном случае это имя поля lastName -->
-				<input type="text" [id]="form.lastName().name()" [field]="form.lastName" />
-				@if(form.lastName().invalid() || form.lastName().touched()) {
-				@for(error of form.lastName().errors(); track error.kind) {
-				<span>{{ error.message }}</span>
+				@let lastName = form.lastName();
+				<!-- lastName.name() - динамически задаем для атрибута for значение - в данном случае это имя поля lastName -->
+				<label [for]="lastName.name()">last name</label>
+				<input type="text" [id]="lastName.name()" [field]="form.lastName" />
+				@if(lastName.invalid() || lastName.touched()) {
+				@for(err of lastName.errors(); track err.kind) {
+				<span>{{ err.message }}</span>
 				}
 				}
 			</div>
@@ -31,8 +31,9 @@
 
 	<!-- billing address -->
 	<div class="checkbox-group">
-		<input [id]="form.hasBillingAddress().name()" type="checkbox" [field]="form.hasBillingAddress" />
-		<label [for]="form.hasBillingAddress().name()" class="checkbox-label">Add Billing Address</label>
+		@let hasBillingAddress = form.hasBillingAddress();
+		<input [id]="hasBillingAddress.name()" type="checkbox" [field]="form.hasBillingAddress" />
+		<label [for]="hasBillingAddress.name()" class="checkbox-label">Add Billing Address</label>
 	</div>
 
 	@if(!form.billingAddress().hidden()) {
@@ -44,17 +45,19 @@
 
 	<!-- shipping address -->
 	<div class="checkbox-group">
-		<input [id]="form.hasShippingAddress().name()" type="checkbox" [field]="form.hasShippingAddress" />
-		<label [for]="form.hasShippingAddress().name()" class="checkbox-label">Add Shipping Address</label>
+		@let hasShippingAddress = form.hasShippingAddress();
+		<input [id]="hasShippingAddress.name()" type="checkbox" [field]="form.hasShippingAddress" />
+		<label [for]="hasShippingAddress.name()" class="checkbox-label">Add Shipping Address</label>
 	</div>
 
 	@if(!form.shippingAddress().hidden()) {
 	<fieldset class="form-fieldset address-fieldset mb-6">
 		<legend>Shipping Address</legend>
 		<cfc-customer-address [address]="form.shippingAddress">
+			@let note = form.shippingAddress.note();
 			<div class="form-group">
-				<label [for]="form.shippingAddress.note().name()">Note</label>
-				<textarea [id]="form.shippingAddress.note().name()" [field]="form.shippingAddress.note"></textarea>
+				<label [for]="note.name()">Note</label>
+				<textarea [id]="note.name()" [field]="form.shippingAddress.note"></textarea>
 			</div>
 		</cfc-customer-address>
 	</fieldset>
